@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\Storage;
 use DataTables;
+use Image;
 
 class ProductsController extends Controller
 {
@@ -71,7 +72,7 @@ class ProductsController extends Controller
             'product_price' => 'required',
             'product_category' => 'required',
             'product_quantity' => 'required',
-            'product_photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'product_photo' => 'required',
             
         ],[
             'product_name.unique' => 'Product Name Already Exists'
@@ -83,10 +84,17 @@ class ProductsController extends Controller
         // $new_name = rand() . '.' . $image->getClientOriginalExtension();
      
         // $destinationPath = public_path('pichas');
-        $profileImage = date('YmdHis') . '.' .  $image->getClientOriginalExtension();
-        // $image->move($destinationPath,$profileImage);
-        Storage::disk('public')->putFileAs('pichas', $request->file('product_photo'), $profileImage);
-        $input['product_photo'] = "$profileImage";
+        $image = $request->file('product_photo');
+        $input['imagename'] = time().'.'.$image->extension();
+        $filePath = public_path('storage/pichas/');
+        $img = Image::make($image->path());
+        $img->resize(110,110,function($const){
+            $const->aspectRatio();
+        })->save($filePath.'/'.$input['imagename']);
+        $profileImage = $input['imagename'];
+        // // $image->move($destinationPath,$profileImage);
+        // Storage::disk('public')->putFileAs('pichas', $request->file('product_photo'), $profileImage);
+        // $input['product_photo'] = "$profileImage";
 
     }
     if($validator->fails())
@@ -160,10 +168,10 @@ class ProductsController extends Controller
                 Storage::disk('public')->putFileAs('pichas', $request->file('product_photou'), $imageName);
 
                 if ($product->product_image) {
-                //   Storage::delete('public/pichas/' . $product->product_image);
+                   Storage::delete('public/pichas/' . $product->product_image);
                 }
               } else {
-                $imageName = $product->product_photo;
+                $imageName = $product->product_image;
               }
               $updateData = array(
                 'product_name' => $request->product_nameu,
@@ -196,5 +204,12 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         //
+        $data = Products::findOrFail($id);
+        //$data->delete();
+        if(Storage::delete('public/pichas/' . $data->product_image))
+        {
+            $data->delete();
+        }
+
     }
 }

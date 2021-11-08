@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>SIMTECH |GYM EQUIPMENTS</title>
+        <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="apple-touch-icon" sizes="57x57" href="img/favicon-icons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="img/favicon-icons/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="img/favicon-icons/apple-icon-72x72.png">
@@ -32,7 +34,9 @@
     <!-- Color css -->
     <link rel="stylesheet" id="jssDefault" href="{{asset('frontend/skins/color-files/css/color1.css')}}">
     
-	
+	<!-- Sweet Alert CSS -->
+    <link href="{{ asset('backend/plugins/sweetalerts/sweetalert.css')}}" rel="stylesheet" type="text/css" />
+    <!-- <link href="{{ asset('backend/assets/css/components/custom-sweetalert.css')}}" rel="stylesheet" type="text/css" /> -->
 
 </head>
 
@@ -52,6 +56,7 @@
     <script>
         $(document).ready(function(){
            // $(.mix).css("display","block");
+           //Fetch Products 
             $.ajax({
             url:"{{route('users_products')}}",
             type:"GET",
@@ -79,7 +84,8 @@
                 `</div>`;
               
              });
-            // alert(inner_div);
+
+        
 
              $('#all_products').append(inner_div);
              $('.mix').fadeIn();
@@ -88,7 +94,77 @@
 
             }
             });
-        })
+            //End
+
+// Add New Product
+$('#feedbackForm').on('submit',(function(e){
+    alert("You Are Good To Go");
+    e.preventDefault();
+    $.ajaxSetup({
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url:"{{ url('sendFeedback') }}",
+        method:"POST",
+        data:new FormData(this),
+        contentType:false,
+        cache:false,
+        processData:false,
+        beforeSend:function()
+        {
+        $('#buttonFeedback').html('Sending Your Feedback');
+        },
+        success : function(response)
+        {
+            if($.isEmptyObject(response.feedback_errors))
+            {
+                //$('#myModal').modal('toggle');
+                $("#feedback_errors").fadeOut(1000,function(){
+
+
+                });
+
+                swal({
+                title: 'Success!',
+                text: "Feedback/Message Successfully Submitted,Will Soon Get To You!",
+                type: 'success',
+                padding: '2em'
+                });
+                // $('#products_table').DataTable().ajax.reload();
+
+                $('#feedbackForm').trigger("reset");
+
+                $("#buttonFeedback").html('SUBMIT');
+
+                // table.ajax.reload();
+            }
+            else
+            {
+                $("#feedback_errors").fadeIn(1000,function(){
+                printErrorMsg(response.feedback_errors,'feedback_errors');
+                $("#buttonFeedback").html('SUBMIT');
+                });
+            }
+        }
+    });
+
+}));
+//End
+
+        });
+//Print Errors
+function printErrorMsg(msg,div)
+{
+    //  alert('#' + div);
+    $("#" + div).find("ul").html('');
+    $("#" + div).css('display','block');
+    $.each(msg,function(key,value){
+    $("#" + div).find('ul').append('<li>' + value + '</li>');
+    });
+}
+      
     </script>
     <!-- bootstrap js -->
     <script src="{{asset('frontend/assets/bootstrap/js/bootstrap.min.js')}}"></script>
@@ -136,6 +212,10 @@
     <script src="{{asset('frontend/customizer/plugins/jQuery.style.switcher.min.js')}}"></script>
     <script src="{{asset('frontend/customizer/plugins/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.concat.min.js')}}"></script>
     <script src="{{asset('frontend/customizer/js/customizer.js')}}"></script>
+
+    <!-- SweetAlert JS -->
+    <script src="{{ asset('backend/plugins/sweetalerts/sweetalert2.min.js')}}"></script>
+    <!-- <script src="{{ asset('backend/plugins/sweetalerts/custom-sweetalert.js')}}"></script> -->
 
     
 </body>

@@ -6,7 +6,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="single-footer-widget">
                         <div class="footer-logo">
-                            <a href="index.html"><img alt="SimTech Empire" src="img/footer/logo.pn"></a>
+                            <a href="{{Config::get('app.url')}}"><img alt="SimTech Empire" src="{{asset('frontend/img/resources/logo-3.jpg')}}"></a>
                         </div>
                         <div class="caption-text">
                             <p>We Are Fitness Equipment Repair & Maintenance Specialists.

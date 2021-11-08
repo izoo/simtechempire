@@ -10,7 +10,7 @@
     <section class="bread-cumb">
         <div class="container text-center">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="{{Config::get('app.url')}}">Home</a></li>
                 <li><span>Services</span></li>
             </ul>
         </div>

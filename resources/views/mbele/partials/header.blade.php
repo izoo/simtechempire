@@ -24,12 +24,12 @@
         <div class="container">
             <nav class="navigation clearfix">
                 <div id="menuzord" class="menuzord">
-                    <a href="index.html" class="menuzord-brand">
-                        <img src="img/resources/simtech2.pn" alt="SIMTECH EMPIRE FITNESS" />
+                    <a href="{{Config::get('app.url')}}" class="menuzord-brand">
+                        <img src="{{asset('frontend/img/resources/logo-3.jpg')}}" alt="SIMTECH EMPIRE FITNESS" />
                     </a>
                     <ul class="menuzord-menu">
                         <li>
-                            <a href="http://127.0.0.1:8000/" class="flip-flop-btn"><span data-hover="HOME">HOME</span></a>
+                            <a href="{{Config::get('app.url')}}" class="flip-flop-btn"><span data-hover="HOME">HOME</span></a>
                           
                         </li>
                          

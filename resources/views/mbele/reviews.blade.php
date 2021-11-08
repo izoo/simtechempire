@@ -10,7 +10,7 @@
     <section class="bread-cumb">
         <div class="container text-center">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="{{Config::get('app.url')}}">Home</a></li>
                 <li><span>Reviews</span></li>
             </ul>
         </div>
@@ -30,7 +30,7 @@
                         <div class="item">
                             <div class="single-testimonial-carousel">
                                 <div class="qoute-icon-box">
-                                    <img src="img/resources/qoute-icon.png" alt="Awesome Image" />
+                                    <img src="{{asset('frontend/img/resources/qoute-icon.png')}}" alt="Awesome Image" />
                                 </div>
                                 <div class="testimonial-text-box">
                                     <h3>Am Deligthed By SimTech Empire Serives</h3>
@@ -49,7 +49,7 @@
                         <div class="item">
                             <div class="single-testimonial-carousel">
                                 <div class="qoute-icon-box">
-                                    <img src="img/resources/qoute-icon.png" alt="Awesome Image" />
+                                    <img src="{{('frontend/img/resources/qoute-icon.png')}}" alt="Awesome Image" />
                                 </div>
                                 <div class="testimonial-text-box">
                                     <h3>Am Thankful</h3>
@@ -68,7 +68,7 @@
                         <div class="item">
                             <div class="single-testimonial-carousel">
                                 <div class="qoute-icon-box">
-                                    <img src="img/resources/qoute-icon.png" alt="Awesome Image" />
+                                    <img src="{{('frontend/img/resources/qoute-icon.png')}}" alt="Awesome Image" />
                                 </div>
                                 <div class="testimonial-text-box">
                                     <h3>Simtech Empire is the best</h3>

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\FeedbacksController;
+use App\Http\Controllers\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,18 +31,22 @@ Route::group(['prefix' => 'admin'],function(){
         Route::get('prods',function(){
             return view('admin.dashboard.products');
         });
+        Route::get('feedback_messages',function(){
+            return view('admin.dashboard.feedbacks');
+        })->name('feedback_messages');
         Route::post('update_products',[ProductsController::class,'update'])->name('update_products');
-
+        Route::delete('products/{id}',[ProductsController::class,'destroy']);
         
-    });
-
-
-    
+    });    
 });
 Route::resource('products',ProductsController::class);
+Route::resource('feedbacks',FeedbacksController::class);
+Route::post('sendFeedback',[FeedbacksController::class,'store']);
 // Route::group(['prefix' => 'user'],function(){
 // });
 
+// Route::get('/',[FileController::class,'index']);
+Route::post('/image-resize',[FileController::class,'imgResize'])->name('img-resize');
 Route::get('/', function () {
     return view('mbele.index');
     // return Inertia::render('Welcome', [

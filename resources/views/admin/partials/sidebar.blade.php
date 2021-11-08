@@ -22,6 +22,9 @@
                                 <a href="{{ url('admin/prods')  }}"> Products List </a>
                             </li>
                             <li>
+                                <a href="{{ url('admin/feedback_messages')  }}"> Customer Feedbacks </a>
+                            </li>
+                            <li>
                                 <a href="{{ route('admin.logout')  }}"> Sign Out </a>
                             </li>
                         </ul>

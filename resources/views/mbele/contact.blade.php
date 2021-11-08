@@ -10,7 +10,7 @@
     <section class="bread-cumb">
         <div class="container text-center">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="{{Config::get('app.url')}}">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><span>Contact</span></li>
             </ul>
@@ -78,8 +78,18 @@
                     <div class="section-title">
                         <h1><span>Get In Touch With Us</span></h1>
                     </div>
-                    <form action="" class="home-contact-form contact-form">
-                        <div class="row">
+                    <form id="feedbackForm" method="POST"  class="home-contact-form contact-form">
+                    <div class="row">
+                    <div class="col-xl-12 col-md-12 col-sm-12">
+                    <div id="feedback_errors" class="alert alert-danger print-error-msg w3-padding-right w3-padding-left" style="display:none;">
+                        <a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a>
+                        <ul class="w3-ul" style="list-style:none;">
+                        
+                        </ul>
+                        </div>
+                    </div>
+                   </div>
+                    <div class="row">
                             <div class="col-md-6">
                                 <input type="text" name="name" placeholder="Your Name *">
                             </div>
@@ -87,14 +97,14 @@
                                 <input type="text" name="email" placeholder="Your Email *">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="phone" placeholder="Your Phone">
+                                <input type="text" name="phone_no" placeholder="Your Phone">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="Location" placeholder="Your Location">
+                                <input type="text" name="location" placeholder="Your Location">
                             </div>
                             <div class="col-md-12">
                                 <textarea name="requirement" placeholder="Your Requirements *"></textarea>
-                                <button type="submit" class="arrow-push-out-right"><span>Send Message <i class="fa fa-caret-right"></i></span></button>
+                                <button type="submit" id="buttonFeedback" class="arrow-push-out-right"><span>Send Message <i class="fa fa-caret-right"></i></span></button>
                             </div>
                         </div>
                     </form>

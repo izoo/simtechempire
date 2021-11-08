@@ -154,47 +154,98 @@
         
         $(document).ready(function() {
             App.init();
-            $('#html5-extension').DataTable( {
-            "dom": "<'dt--top-section'<'row'<'col-sm-12 col-md-6 d-flex justify-content-md-start justify-content-center'B><'col-sm-12 col-md-6 d-flex justify-content-md-end justify-content-center mt-md-0 mt-3'f>>>" +
-        "<'table-responsive'tr>" +
-        "<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",
-        responsive:true,
-                ajax:
-                {
-                url: '{{route("products.index")}}',
-                
-                },
-                "columns":[
 
-                {data:'DT_RowIndex',name: 'DT_RowIndex'},
-                {data:'product_name',name:'product_name'},
-                {data:'product_price',name:'product_price'},
-                {data:'product_category',name:'product_category'},
-                {data:'image',name:'image'},
-                {data:'product_description',name:'product_description'},
-                
-                {data:'action',name:'action',orderable:false,searchable:false}
-                ],  
-        
-        buttons: {
-                buttons: [
-                    { extend: 'copy', className: 'btn btn-sm' },
-                    { extend: 'pdf', className: 'btn btn-sm' },
-                    { extend: 'excel', className: 'btn btn-sm' },
-                    { extend: 'print', className: 'btn btn-sm' }
-                ]
-            },
-            "oLanguage": {
-                "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
-                "sInfo": "Showing page _PAGE_ of _PAGES_",
-                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-                "sSearchPlaceholder": "Search...",
-               "sLengthMenu": "Results :  _MENU_",
-            },
-            "stripeClasses": [],
-            "lengthMenu": [7, 10, 20, 50],
-            "pageLength": 7 
-        } );
+ //Fetch Products List
+
+ $('#html5-extension').DataTable( {
+"dom": "<'dt--top-section'<'row'<'col-sm-12 col-md-6 d-flex justify-content-md-start justify-content-center'B><'col-sm-12 col-md-6 d-flex justify-content-md-end justify-content-center mt-md-0 mt-3'f>>>" +
+"<'table-responsive'tr>" +
+"<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",
+responsive:true,
+ajax:
+{
+url: '{{route("products.index")}}',
+
+},
+"columns":[
+
+{data:'DT_RowIndex',name: 'DT_RowIndex'},
+{data:'product_name',name:'product_name'},
+{data:'product_price',name:'product_price'},
+{data:'product_category',name:'product_category'},
+{data:'image',name:'image'},
+{data:'product_description',name:'product_description'},
+
+{data:'action',name:'action',orderable:false,searchable:false}
+],  
+
+buttons: {
+buttons: [
+{ extend: 'copy', className: 'btn btn-sm' },
+{ extend: 'pdf', className: 'btn btn-sm' },
+{ extend: 'excel', className: 'btn btn-sm' },
+{ extend: 'print', className: 'btn btn-sm' }
+]
+},
+"oLanguage": {
+"oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+"sInfo": "Showing page _PAGE_ of _PAGES_",
+"sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+"sSearchPlaceholder": "Search...",
+"sLengthMenu": "Results :  _MENU_",
+},
+"stripeClasses": [],
+"lengthMenu": [7, 10, 20, 50],
+"pageLength": 7 
+} );
+
+ //End
+
+ //Feedbacks List
+ $('#feedbacksTable').DataTable( {
+"dom": "<'dt--top-section'<'row'<'col-sm-12 col-md-6 d-flex justify-content-md-start justify-content-center'B><'col-sm-12 col-md-6 d-flex justify-content-md-end justify-content-center mt-md-0 mt-3'f>>>" +
+"<'table-responsive'tr>" +
+"<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",
+responsive:true,
+ajax:
+{
+url: '{{route("feedbacks.index")}}',
+
+},
+"columns":[
+{data:'DT_RowIndex',name: 'DT_RowIndex'},
+{data:'name',name:'name'},
+{data:'phone_no',name:'phone_no'},
+{data:'email',name:'email'},
+{data:'location',name:'location'},
+{data:'requirements',name:'requirements'},
+{data:'date',name:'date'}
+],  
+
+buttons: {
+buttons: [
+{ extend: 'copy', className: 'btn btn-sm' },
+{ extend: 'pdf', className: 'btn btn-sm' },
+{ extend: 'excel', className: 'btn btn-sm' },
+{ extend: 'print', className: 'btn btn-sm' }
+]
+},
+"oLanguage": {
+"oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+"sInfo": "Showing page _PAGE_ of _PAGES_",
+"sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+"sSearchPlaceholder": "Search...",
+"sLengthMenu": "Results :  _MENU_",
+},
+"stripeClasses": [],
+"lengthMenu": [7, 10, 20, 50],
+"pageLength": 7 
+} );
+
+ //End
+
+
+
             // Add New Product
             $('#productForm').on('submit',(function(e){
         //alert("You Are Good To Go");
@@ -255,7 +306,7 @@
 
         // Edit Product Function
 $('body').on('click','.edit_product',function(){
-    alert("You Are Good To Go");
+  //  alert("You Are Good To Go");
 	var id=$(this).attr('id');
 // alert(id);
 	$.get("{{route('products.index')}}" +'/' + id+'/edit',function(data)
@@ -329,6 +380,52 @@ $('body').on('click','.edit_product',function(){
         });
        }));
             //End
+// Delete Product
+$(document).on('click','.deleteProduct',function(){
+var id=$(this).attr('id');
+swal({
+title:"Are you sure you to remove this product ?",
+text:"This Action Cannot be Reverted",
+icon:"warning",
+buttons:true,
+dangerMode:true,
+})
+.then((willDelete) => {
+if(willDelete)
+{
+$.ajaxSetup({
+headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+}
+});
+$.ajax({
+url:"products/"+id,
+type:'DELETE',
+data:{
+"id":id
+},
+success:function(data)
+{
+swal({
+title:"Success",
+text:"Product Successfuly Removed",
+icon:"success",
+button:"OK"
+});
+
+$('#html5-extension').DataTable().ajax.reload();
+
+}
+});
+
+
+} else {
+swal("Product Not Removed!");
+}
+});
+});
+//Remove User
+// End
 
         });
         function printErrorMsg(msg,div)
