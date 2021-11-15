@@ -88,13 +88,11 @@ class ProductsController extends Controller
         $input['imagename'] = time().'.'.$image->extension();
         $filePath = public_path('storage/pichas/');
         $img = Image::make($image->path());
-        $img->resize(110,110,function($const){
-            $const->aspectRatio();
-        })->save($filePath.'/'.$input['imagename']);
+        $img->save($filePath.'/'.$input['imagename']);
         $profileImage = $input['imagename'];
-        // // $image->move($destinationPath,$profileImage);
-        // Storage::disk('public')->putFileAs('pichas', $request->file('product_photo'), $profileImage);
-        // $input['product_photo'] = "$profileImage";
+        //$image->move($destinationPath,$profileImage);
+        Storage::disk('public')->putFileAs('pichas', $request->file('product_photo'), $profileImage);
+        $input['product_photo'] = "$profileImage";
 
     }
     if($validator->fails())
